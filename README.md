@@ -45,15 +45,15 @@ Alirght - so this is your mission - good luck and may the defi be with you!
  
 ## Improvements
 
-[X] Add more getters
-[X] Set the initial data to amount 0 and the address the beneficiary
-[X] Add a validation that forbids the withdrawal to the current highest (don't set the balance until there is a new highest)
-[X] endAuction only should be call by the beneficiary
-[X] Add no re-entrancy modifier
-[X] Add test cases
-[X] The beneficiary shouldn't be able to make a bid
-[X] Allow multiple bid from the same address
-[X] Add initial offer on contract creation
+- [x] Add more getters
+- [x] Set the initial data to amount 0 and the address the beneficiary
+- [x] Add a validation that forbids the withdrawal to the current highest (don't set the balance until there is a new highest)
+- [x] endAuction only should be call by the beneficiary
+- [x] Add no re-entrancy modifier
+- [x] Add test cases
+- [x] The beneficiary shouldn't be able to make a bid
+- [x] Allow multiple bid from the same address
+- [x] Add initial offer on contract creation
 
 ## Test Cases
 
