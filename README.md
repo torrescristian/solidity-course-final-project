@@ -59,35 +59,40 @@ Alirght - so this is your mission - good luck and may the defi be with you!
 
 ### Setting
 From an account A deploy the contract setting the auction duration days (e.g. 1 day), the initial offer (e.g. 50 wei) and check:
-    1. The "beneficiary" should be the address of the account A
-    2. The "highest" should contain an amount = 0 and the address of the account A
-    3. The auctionEndTime should be the current date + auction duration days
-        3.1 we can validate this by parsing the date to a readable form on https://www.epochconverter.com/
+
+1. The "beneficiary" should be the address of the account A
+2. The "highest" should contain an amount = 0 and the address of the account A
+3. The auctionEndTime should be the current date + auction duration days
+    1. we can validate this by parsing the date to a readable form on https://www.epochconverter.com/
 
 ### Do the first bid
 From an account B call the "bid" function with a "n" value, lets say 100 wei
-    1. The "highest" should contain an amount = 100 wei and the address of the account B
-    2. Now you should have an error if you try to bid with less or equal value as the highest bid from any account 
-    3. The beneficiary (account A) should not be able to make a bid
+
+1. The "highest" should contain an amount = 100 wei and the address of the account B
+2. Now you should have an error if you try to bid with less or equal value as the highest bid from any account 
+3. The beneficiary (account A) should not be able to make a bid
 
 ### Do the second and nth bid
 From an account C call the "bid" function with a "n" + 1 value, in our example 101 wei
-    1. The "highest" should contain an amount = 101 wei and the address of the account C
-    2. The account B now will have a pending funds and will be enabled to call the "withdraw" function
-        2.1. This is safer than just send the refund to account B (withdraw pattern)
-        2.2. You can check the new balance of the account B calling "getBalance" from that account
-    3. An account should be able to bid multiple times and the partial amounts should be considerated as a single one
-        3.1. The account should be able to be set as a new highest if the current send value + the previous ones are larger than the current highest
-        3.2. The pending blanace (if there was one) should be removed (be 0 again)
+
+1. The "highest" should contain an amount = 101 wei and the address of the account C
+2. The account B now will have a pending funds and will be enabled to call the "withdraw" function
+    1. This is safer than just send the refund to account B (withdraw pattern)
+    2. You can check the new balance of the account B calling "getBalance" from that account
+3. An account should be able to bid multiple times and the partial amounts should be considerated as a single one
+    1. The account should be able to be set as a new highest if the current send value + the previous ones are larger than the current highest
+    2. The pending blanace (if there was one) should be removed (be 0 again)
 
 ### Withdraw pending funds
 From the account B, an account that made a bid but its no longer the highest bid, call the "withdraw" function, after that:
-    1. You should see the value of the account B bid back to the account
-    2. If you click on "getBalance" from that account the function should return "0"
- 
+    
+1. You should see the value of the account B bid back to the account
+2. If you click on "getBalance" from that account the function should return "0"
+
 ### Complete the auction
 From the account A, the one that deployed the contract, call the "endAuction"
-    1. Now account A should be able to see the highest bid as a pending balance and withdraw it
-    2. It should not be any way to change the highest bid or bidder anymore, in our example account C will be the winner by being the last one
-    3. All the other pending balance should continue be able to be withdrawn
-    4. All of these conditions apply also when the bid was finished by auction timeout, in our example after 1 day of the deployment of the contract
+
+1. Now account A should be able to see the highest bid as a pending balance and withdraw it
+2. It should not be any way to change the highest bid or bidder anymore, in our example account C will be the winner by being the last one
+3. All the other pending balance should continue be able to be withdrawn
+4. All of these conditions apply also when the bid was finished by auction timeout, in our example after 1 day of the deployment of the contract
