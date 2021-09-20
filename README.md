@@ -44,9 +44,6 @@ Alirght - so this is your mission - good luck and may the defi be with you!
 # Personal notes
  
 ## Improvements
-
-- [x] Add more getters
-- [x] Set the initial data to amount 0 and the address the beneficiary
 - [x] Add a validation that forbids the withdrawal to the current highest (don't set the balance until there is a new highest)
 - [x] endAuction only should be call by the beneficiary
 - [x] Add no re-entrancy modifier
